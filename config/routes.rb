@@ -1,5 +1,6 @@
 
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'static_page#landing_page'
   get  'static_page/policy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
