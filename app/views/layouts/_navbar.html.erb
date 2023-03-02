@@ -7,35 +7,39 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<%= root_path %>"><i class="bi bi-0-circle"></i>Home</a>
+          <a class="nav-link active" aria-current="page" href="<%= root_path %>"></i>Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<%= static_page_policy_path %>">Policy</a>
         </li>
         <li class="nav-item dropdown">
+        <% if current_user %>
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+              <%= current_user.email %>
           </a>
+        <% end %>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="<%= edit_user_registration_path %>">Settings</a></li>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %> </li>
+           
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
           <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
         </form>
-
+    <% if !current_user %>
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+           
+          <a href="<%= new_user_session_path %>" class="btn btn-dark">Signin</a>
+
+          <a href="<%= new_user_registration_path %>" class="btn btn-success">Signup</a>
+        
+    <% end %>
+
         </div>
-    </div>
   </div>
 </nav>
+
+
 
