@@ -15,12 +15,13 @@
         <li class="nav-item dropdown">
         <% if current_user %>
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= current_user.email %>
+          <i class="bi bi-person"></i> <%= current_user.email %>
           </a>
         <% end %>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<%= edit_user_registration_path %>">Settings</a></li>
-            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %> </li>
+            <li>< %= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %> </li>
+            <li><%= link_to 'Profile', (current_user ? user_path(current_user) : profile_path),  class: "dropdown-item" %> </li>
            
           </ul>
         </li>
@@ -32,7 +33,6 @@
         <div class="text-end">
            
           <a href="<%= new_user_session_path %>" class="btn btn-dark">Signin</a>
-
           <a href="<%= new_user_registration_path %>" class="btn btn-success">Signup</a>
         
     <% end %>
